@@ -3,73 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Games - Mysite</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            background: linear-gradient(to right, #87CEEB, #00BFFF); /* Gradient background */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+        :root {
+            --text-color: #fff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --accent-green: #4CAF50;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            text-align: center;
-            overflow-x: hidden;
         }
-        h1 {
-            font-size: 3em;
-            margin-top: 20px;
-            color: #fff;
-            text-shadow: 2px 2px 4px #000;
-        }
-        .button-container {
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+            min-height: 100vh;
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            overflow-x: hidden;
+            position: relative;
         }
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
+
+        /* --- Floating Background Shapes --- */
+        .shape {
+            position: absolute;
+            filter: blur(60px);
+            z-index: -1;
+            animation: floatShape 12s infinite alternate;
+        }
+        .shape-1 {
+            top: 5%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: #ff00cc;
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+        .shape-2 {
+            bottom: 10%;
+            right: 5%;
+            width: 250px;
+            height: 250px;
+            background: #3333ff;
+            opacity: 0.4;
+            border-radius: 50%;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, 50px) rotate(10deg); }
+        }
+
+        /* --- Header / Nav --- */
+        header {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            text-decoration: none;
             color: white;
-            padding: 15px 32px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-top: 10px;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
+            margin-bottom: 40px;
+        }
+
+        /* --- Game Grid --- */
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 90%;
+            max-width: 1000px;
+            padding-bottom: 50px;
+            perspective: 1000px;
+        }
+
+        .game-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10px 0; /* Adjusted margin for vertical spacing */
-            cursor: pointer;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s;
+            color: white;
+            transition: transform 0.3s;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
         }
-        .button:hover {
-            transform: scale(1.05);
-        }
-        .note {
-            font-size: 0.9em;
-            color: #fff;
-            margin-top: -10px;
+
+        /* Game Icons */
+        .game-icon {
+            font-size: 3.5em;
             margin-bottom: 20px;
+            color: #00BFFF;
+            transition: transform 0.3s;
+            transform: translateZ(30px);
         }
+
+        .game-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transform: translateZ(20px);
+        }
+
+        .play-btn {
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: var(--accent-green);
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            transform: translateZ(40px);
+            transition: all 0.3s;
+        }
+
+        .note {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.6);
+            margin-top: 10px;
+            transform: translateZ(20px);
+        }
+
+        /* Hover Effects */
+        .game-card:hover .game-icon {
+            transform: translateZ(50px) scale(1.1);
+            color: #fff;
+        }
+
+        .game-card:hover .play-btn {
+            background: #45a049;
+            transform: translateZ(50px) scale(1.05);
+        }
+
+        /* Specific Colors for Icons */
+        .snake-icon { color: #2ecc71; }
+        .tic-icon { color: #f1c40f; }
+        .chess-icon { color: #9b59b6; }
+
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            .button {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
+            h1 { font-size: 2em; }
+            .back-btn span { display: none; } /* Hide "Home" text on small screens */
+            .games-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <h1>Games</h1>
-    <p>Some simple games made using htm, css, js</p>
-    <div class="button-container">
-        <a href="https://halfanhossenhabib.github.io/snakegame/" class="button">Play Snake Game</a>
-        <a href="https://halfanhossenhabib.github.io/tic-tac-toe/" class="button">Play Tic Tac Toe</a>
-        <a href="https://pure-chess-mastery-online.lovable.app/" class="button">Play Chess</a>
-        <p class="note">(with the help of loveable AI)</p>
+
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <header>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> <span>Home</span>
+        </a>
+        <div>
+            <h1>Games Hub</h1>
+            <p class="subtitle">Simple games built with HTML, CSS & JS</p>
+        </div>
+    </header>
+
+    <div class="games-container">
+        
+        <a href="https://halfanhossenhabib.github.io/snakegame/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+            <i class="fas fa-worm game-icon snake-icon"></i>
+            <span class="game-title">Snake Game</span>
+            <span class="play-btn">Play Now</span>
+        </a>
+
+        <a href="https://halfanhossenhabib.github.io/tic-tac-toe/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+            <i class="fas fa-border-all game-icon tic-icon"></i>
+            <span class="game-title">Tic Tac Toe</span>
+            <span class="play-btn">Play Now</span>
+        </a>
+
+        <a href="https://pure-chess-mastery-online.lovable.app/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+            <i class="fas fa-chess-knight game-icon chess-icon"></i>
+            <span class="game-title">Chess Mastery</span>
+            <span class="note">(Powered by Lovable AI)</span>
+            <span class="play-btn">Play Now</span>
+        </a>
+
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script>
+        // Init Tilt Effect
+        VanillaTilt.init(document.querySelectorAll(".game-card"), {
+            max: 25,
+            speed: 400,
+            scale: 1.05
+        });
+    </script>
+
 </body>
 </html>
