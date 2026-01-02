@@ -13,15 +13,10 @@
             --text-color: #fff;
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
-            --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             --accent-green: #4CAF50;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -42,74 +37,28 @@
             z-index: -1;
             animation: floatShape 12s infinite alternate;
         }
-        .shape-1 {
-            top: 5%;
-            left: 5%;
-            width: 300px;
-            height: 300px;
-            background: #ff00cc;
-            opacity: 0.3;
-            border-radius: 50%;
-        }
-        .shape-2 {
-            bottom: 10%;
-            right: 5%;
-            width: 250px;
-            height: 250px;
-            background: #3333ff;
-            opacity: 0.4;
-            border-radius: 50%;
-            animation-delay: -5s;
-        }
+        .shape-1 { top: 5%; left: 5%; width: 300px; height: 300px; background: #ff00cc; opacity: 0.3; border-radius: 50%; }
+        .shape-2 { bottom: 10%; right: 5%; width: 250px; height: 250px; background: #3333ff; opacity: 0.4; border-radius: 50%; animation-delay: -5s; }
 
         @keyframes floatShape {
             0% { transform: translate(0, 0) rotate(0deg); }
             100% { transform: translate(30px, 50px) rotate(10deg); }
         }
 
-        /* --- Header / Nav --- */
+        /* --- Header --- */
         header {
-            width: 100%;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            width: 100%; padding: 20px; display: flex; justify-content: center; align-items: center; position: relative;
         }
 
         .back-btn {
-            position: absolute;
-            left: 20px;
-            text-decoration: none;
-            color: white;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 15px;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
+            position: absolute; left: 20px; text-decoration: none; color: white; font-size: 1.2em;
+            display: flex; align-items: center; gap: 10px; padding: 8px 15px; border-radius: 30px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
         }
+        .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateX(-5px); }
 
-        .back-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateX(-5px);
-        }
-
-        h1 {
-            font-size: 2.5em;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            margin-top: 10px;
-        }
-
-        .subtitle {
-            margin-top: 10px;
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1em;
-            margin-bottom: 40px;
-        }
+        h1 { font-size: 2.5em; text-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-top: 10px; }
+        .subtitle { margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 1.1em; margin-bottom: 40px; }
 
         /* --- Game Grid --- */
         .games-container {
@@ -145,60 +94,35 @@
             overflow: hidden;
         }
 
-        /* Game Icons */
         .game-icon {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            color: #00BFFF;
-            transition: transform 0.3s;
-            transform: translateZ(30px);
+            font-size: 3.5em; margin-bottom: 20px; color: #00BFFF;
+            transition: transform 0.3s; transform: translateZ(30px);
         }
 
-        .game-title {
-            font-size: 1.5em;
-            font-weight: 600;
-            margin-bottom: 10px;
-            transform: translateZ(20px);
-        }
+        .game-title { font-size: 1.5em; font-weight: 600; margin-bottom: 10px; transform: translateZ(20px); }
 
         .play-btn {
-            margin-top: 15px;
-            padding: 10px 25px;
-            background: var(--accent-green);
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-            transform: translateZ(40px);
-            transition: all 0.3s;
+            margin-top: 15px; padding: 10px 25px; background: var(--accent-green);
+            border-radius: 50px; font-weight: 600; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            transform: translateZ(40px); transition: all 0.3s;
         }
 
-        .note {
-            font-size: 0.8em;
-            color: rgba(255,255,255,0.6);
-            margin-top: 10px;
-            transform: translateZ(20px);
-        }
+        .note { font-size: 0.8em; color: rgba(255,255,255,0.6); margin-top: 10px; transform: translateZ(20px); }
 
         /* Hover Effects */
-        .game-card:hover .game-icon {
-            transform: translateZ(50px) scale(1.1);
-            color: #fff;
-        }
+        .game-card:hover .game-icon { transform: translateZ(50px) scale(1.1); color: #fff; }
+        .game-card:hover .play-btn { background: #45a049; transform: translateZ(50px) scale(1.05); }
 
-        .game-card:hover .play-btn {
-            background: #45a049;
-            transform: translateZ(50px) scale(1.05);
-        }
-
-        /* Specific Colors for Icons */
+        /* Specific Colors */
         .snake-icon { color: #2ecc71; }
         .tic-icon { color: #f1c40f; }
         .chess-icon { color: #9b59b6; }
-        .neon-icon  { color: #00E5FF; text-shadow: 0 0 15px #00E5FF; } /* Added Neon Glow */
+        .neon-icon { color: #00E5FF; text-shadow: 0 0 15px #00E5FF; }
+        .stack-icon { color: #ff0055; text-shadow: 0 0 15px #ff0055; }
 
         @media (max-width: 600px) {
             h1 { font-size: 2em; }
-            .back-btn span { display: none; } /* Hide "Home" text on small screens */
+            .back-btn span { display: none; }
             .games-container { grid-template-columns: 1fr; }
         }
     </style>
@@ -238,6 +162,12 @@
             <span class="play-btn">Play Now</span>
         </a>
 
+        <a href="https://halfanhossenhabib.github.io/neonstack/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+            <i class="fas fa-layer-group game-icon stack-icon"></i>
+            <span class="game-title">Neon Stack</span>
+            <span class="play-btn">Play Now</span>
+        </a>
+
         <a href="https://halfanhossenhabib.github.io/chess/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
             <i class="fas fa-chess-knight game-icon chess-icon"></i>
             <span class="game-title">Chess Mastery</span>
@@ -249,7 +179,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
-        // Init Tilt Effect
         VanillaTilt.init(document.querySelectorAll(".game-card"), {
             max: 25,
             speed: 400,
@@ -259,5 +188,3 @@
 
 </body>
 </html>
-
-
