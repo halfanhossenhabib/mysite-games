@@ -1,190 +1,1327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games - Mysite</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --text-color: #fff;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --accent-green: #4CAF50;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Games Hub by Halfan Hossen Habib, featuring playful HTML, CSS, and JavaScript games.">
+  <meta name="theme-color" content="#07111f">
+  <title>Games Hub | Halfan Hossen Habib</title>
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>document.documentElement.classList.add("js");</script>
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-            min-height: 100vh;
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0c1828;
+      --surface: rgba(11, 25, 43, 0.66);
+      --surface-strong: rgba(15, 31, 54, 0.84);
+      --line: rgba(154, 219, 255, 0.18);
+      --line-strong: rgba(154, 219, 255, 0.34);
+      --text: #eef7ff;
+      --muted: #a9bbcf;
+      --cyan: #38e8ff;
+      --blue: #4d88ff;
+      --violet: #a06bff;
+      --pink: #ff4fd8;
+      --mint: #45ffc0;
+      --amber: #ffcc66;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+      --radius: 8px;
+      color-scheme: dark;
+    }
 
-        /* --- Floating Background Shapes --- */
-        .shape {
-            position: absolute;
-            filter: blur(60px);
-            z-index: -1;
-            animation: floatShape 12s infinite alternate;
-        }
-        .shape-1 { top: 5%; left: 5%; width: 300px; height: 300px; background: #ff00cc; opacity: 0.3; border-radius: 50%; }
-        .shape-2 { bottom: 10%; right: 5%; width: 250px; height: 250px; background: #3333ff; opacity: 0.4; border-radius: 50%; animation-delay: -5s; }
+    * {
+      box-sizing: border-box;
+    }
 
-        @keyframes floatShape {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(30px, 50px) rotate(10deg); }
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        /* --- Header --- */
-        header {
-            width: 100%; padding: 20px; display: flex; justify-content: center; align-items: center; position: relative;
-        }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(7, 17, 31, 0.94), rgba(7, 17, 31, 0.98)),
+        repeating-linear-gradient(90deg, rgba(56, 232, 255, 0.05) 0, rgba(56, 232, 255, 0.05) 1px, transparent 1px, transparent 94px),
+        repeating-linear-gradient(0deg, rgba(160, 107, 255, 0.04) 0, rgba(160, 107, 255, 0.04) 1px, transparent 1px, transparent 94px),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-        .back-btn {
-            position: absolute; left: 20px; text-decoration: none; color: white; font-size: 1.2em;
-            display: flex; align-items: center; gap: 10px; padding: 8px 15px; border-radius: 30px;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s;
-        }
-        .back-btn:hover { background: rgba(255,255,255,0.2); transform: translateX(-5px); }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 0%, rgba(56, 232, 255, 0.1) 24%, transparent 36%),
+        linear-gradient(250deg, transparent 0%, rgba(255, 79, 216, 0.09) 30%, transparent 45%),
+        linear-gradient(180deg, rgba(7, 17, 31, 0.2), rgba(7, 17, 31, 0.95));
+      animation: backgroundShift 16s ease-in-out infinite alternate;
+    }
 
-        h1 { font-size: 2.5em; text-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-top: 10px; }
-        .subtitle { margin-top: 10px; color: rgba(255,255,255,0.7); font-size: 1.1em; margin-bottom: 40px; }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.62), transparent 72%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.62), transparent 72%);
+    }
 
-        /* --- Game Grid --- */
-        .games-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 90%;
-            max-width: 1000px;
-            padding-bottom: 50px;
-            perspective: 1000px;
-        }
+    a {
+      color: inherit;
+    }
 
-        .game-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            transition: transform 0.3s;
-            transform-style: preserve-3d;
-            transform: translateZ(0);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 250px;
-            position: relative;
-            overflow: hidden;
-        }
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        .game-icon {
-            font-size: 3.5em; margin-bottom: 20px; color: #00BFFF;
-            transition: transform 0.3s; transform: translateZ(30px);
-        }
+    button {
+      font: inherit;
+    }
 
-        .game-title { font-size: 1.5em; font-weight: 600; margin-bottom: 10px; transform: translateZ(20px); }
+    h1,
+    h2,
+    h3,
+    p {
+      overflow-wrap: break-word;
+    }
 
-        .play-btn {
-            margin-top: 15px; padding: 10px 25px; background: var(--accent-green);
-            border-radius: 50px; font-weight: 600; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-            transform: translateZ(40px); transition: all 0.3s;
-        }
+    h1,
+    h2,
+    h3 {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: 0;
+    }
 
-        .note { font-size: 0.8em; color: rgba(255,255,255,0.6); margin-top: 10px; transform: translateZ(20px); }
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      z-index: 30;
+      transform: translateY(-140%);
+      border: 1px solid var(--cyan);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      background: #06101d;
+      color: var(--text);
+      text-decoration: none;
+      transition: transform 180ms ease;
+    }
 
-        /* Hover Effects */
-        .game-card:hover .game-icon { transform: translateZ(50px) scale(1.1); color: #fff; }
-        .game-card:hover .play-btn { background: #45a049; transform: translateZ(50px) scale(1.05); }
+    .skip-link:focus {
+      transform: translateY(0);
+    }
 
-        /* Specific Colors */
-        .snake-icon { color: #2ecc71; }
-        .tic-icon { color: #f1c40f; }
-        .chess-icon { color: #9b59b6; }
-        .neon-icon { color: #00E5FF; text-shadow: 0 0 15px #00E5FF; }
-        .stack-icon { color: #ff0055; text-shadow: 0 0 15px #ff0055; }
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.58;
+    }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2em; }
-            .back-btn span { display: none; }
-            .games-container { grid-template-columns: 1fr; }
-        }
-    </style>
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+      padding: 1rem clamp(1rem, 3vw, 2rem);
+      transition: padding 220ms ease, background 220ms ease, border-color 220ms ease;
+    }
+
+    .site-header.is-scrolled {
+      padding-block: 0.55rem;
+      border-bottom: 1px solid rgba(154, 219, 255, 0.12);
+      background: rgba(4, 12, 22, 0.72);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1180px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+
+    .brand-name {
+      white-space: nowrap;
+    }
+
+    .brand-orbit {
+      position: relative;
+      width: 2.2rem;
+      height: 2.2rem;
+      border: 1px solid rgba(56, 232, 255, 0.48);
+      border-radius: 50%;
+      box-shadow: 0 0 24px rgba(56, 232, 255, 0.24), inset 0 0 18px rgba(160, 107, 255, 0.18);
+    }
+
+    .brand-orbit::before,
+    .brand-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 0.48rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 18px rgba(56, 232, 255, 0.5);
+    }
+
+    .brand-orbit::after {
+      inset: -0.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      transform: rotate(22deg) scaleX(1.4);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.3rem;
+      border: 1px solid rgba(154, 219, 255, 0.13);
+      border-radius: 999px;
+      background: rgba(9, 22, 38, 0.58);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-menu a {
+      position: relative;
+      display: inline-flex;
+      min-height: 2.35rem;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 180ms ease, background 180ms ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.is-active {
+      background: rgba(56, 232, 255, 0.1);
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      position: relative;
+      display: none;
+      width: 2.65rem;
+      height: 2.65rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(8, 20, 35, 0.8);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      position: absolute;
+      width: 1.1rem;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--text);
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .menu-toggle span:nth-child(1) {
+      transform: translateY(-0.38rem);
+    }
+
+    .menu-toggle span:nth-child(3) {
+      transform: translateY(0.38rem);
+    }
+
+    .menu-toggle.is-open span:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.is-open span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-grid {
+      display: grid;
+      min-height: 88svh;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 7.8rem clamp(1rem, 4vw, 2rem) 3.5rem;
+      grid-template-columns: minmax(0, 0.98fr) minmax(18rem, 0.72fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 5rem);
+    }
+
+    .hero-copy {
+      max-width: 46rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1rem;
+      color: var(--cyan);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 20px rgba(69, 255, 192, 0.72);
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: 5.8rem;
+      line-height: 0.9;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      margin: 1.2rem 0 0;
+      color: var(--cyan);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      text-shadow: 0 0 24px rgba(56, 232, 255, 0.32);
+    }
+
+    .hero-text {
+      max-width: 37rem;
+      margin: 1.1rem 0 0;
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem;
+      margin-top: 2rem;
+    }
+
+    .btn,
+    .play-btn {
+      display: inline-flex;
+      min-height: 3rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.85rem 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, color 180ms ease;
+    }
+
+    .btn-primary,
+    .featured-card .play-btn {
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #03101b;
+      box-shadow: 0 16px 44px rgba(56, 232, 255, 0.24);
+    }
+
+    .btn-ghost,
+    .play-btn {
+      border-color: var(--line-strong);
+      background: rgba(10, 24, 42, 0.58);
+      color: var(--text);
+      backdrop-filter: blur(14px);
+    }
+
+    .btn:hover,
+    .play-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn:active,
+    .play-btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .btn-primary:hover,
+    .featured-card .play-btn:hover {
+      box-shadow: 0 18px 54px rgba(56, 232, 255, 0.34);
+    }
+
+    .btn-ghost:hover,
+    .play-btn:hover {
+      border-color: rgba(56, 232, 255, 0.56);
+      background: rgba(56, 232, 255, 0.1);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 28rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .playfield {
+      position: relative;
+      width: min(100%, 25rem);
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid rgba(154, 219, 255, 0.18);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(56, 232, 255, 0.1), transparent 28%),
+        linear-gradient(235deg, rgba(255, 79, 216, 0.12), transparent 32%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0, rgba(255, 255, 255, 0.06) 1px, transparent 1px, transparent 3.2rem),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0, rgba(255, 255, 255, 0.06) 1px, transparent 1px, transparent 3.2rem),
+        rgba(8, 19, 33, 0.52);
+      box-shadow: var(--shadow);
+      transform: perspective(900px) rotateX(58deg) rotateZ(-17deg);
+      transform-style: preserve-3d;
+    }
+
+    .playfield::before {
+      content: "";
+      position: absolute;
+      inset: 11%;
+      border: 1px solid rgba(56, 232, 255, 0.32);
+      border-radius: var(--radius);
+      transform: translateZ(32px);
+    }
+
+    .playfield-piece {
+      position: absolute;
+      display: inline-flex;
+      width: 4rem;
+      height: 4rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      background: rgba(12, 28, 48, 0.92);
+      color: var(--cyan);
+      font-size: 1.65rem;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.32), 0 0 30px rgba(56, 232, 255, 0.16);
+      transform: translateZ(48px);
+      animation: pieceFloat 4.8s ease-in-out infinite;
+    }
+
+    .piece-chess {
+      left: 13%;
+      top: 16%;
+      color: var(--amber);
+    }
+
+    .piece-snake {
+      right: 12%;
+      top: 26%;
+      color: var(--mint);
+      animation-delay: -1.3s;
+    }
+
+    .piece-grid {
+      left: 30%;
+      bottom: 12%;
+      color: var(--pink);
+      animation-delay: -2.4s;
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 0;
+      bottom: 2.1rem;
+      display: inline-flex;
+      min-height: 3rem;
+      align-items: center;
+      gap: 0.65rem;
+      border: 1px solid rgba(69, 255, 192, 0.28);
+      border-radius: var(--radius);
+      padding: 0.82rem 1rem;
+      background: rgba(6, 19, 32, 0.78);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-note i {
+      color: var(--mint);
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 4.8rem clamp(1rem, 4vw, 2rem);
+    }
+
+    .section-heading {
+      max-width: 45rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 3.6rem;
+      line-height: 1;
+      text-wrap: balance;
+    }
+
+    .section-heading p:not(.eyebrow) {
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .game-card {
+      position: relative;
+      display: flex;
+      min-height: 19rem;
+      overflow: hidden;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      background:
+        linear-gradient(145deg, rgba(16, 34, 59, 0.82), rgba(8, 19, 33, 0.7)),
+        rgba(255, 255, 255, 0.03);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      text-decoration: none;
+      transform-style: preserve-3d;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .game-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background:
+        linear-gradient(120deg, rgba(56, 232, 255, 0.16), transparent 32%),
+        linear-gradient(250deg, rgba(255, 79, 216, 0.14), transparent 35%);
+      transition: opacity 180ms ease;
+    }
+
+    .game-card:hover,
+    .game-card:focus-visible {
+      border-color: rgba(56, 232, 255, 0.52);
+      box-shadow: 0 24px 80px rgba(56, 232, 255, 0.12), var(--shadow);
+      outline: none;
+    }
+
+    .game-card:hover::before,
+    .game-card:focus-visible::before,
+    .game-card.is-touched::before {
+      opacity: 1;
+    }
+
+    .game-card.is-touched,
+    .game-card:active {
+      border-color: rgba(56, 232, 255, 0.62);
+      box-shadow: 0 24px 80px rgba(56, 232, 255, 0.16), var(--shadow);
+      transform: translateY(-5px) scale(0.985);
+    }
+
+    .featured-card {
+      grid-column: span 2;
+      min-height: 22rem;
+      border-color: rgba(255, 204, 102, 0.4);
+      background:
+        linear-gradient(145deg, rgba(34, 34, 52, 0.9), rgba(8, 19, 33, 0.72)),
+        linear-gradient(135deg, rgba(255, 204, 102, 0.12), transparent 34%),
+        rgba(255, 255, 255, 0.03);
+    }
+
+    .featured-card::after {
+      content: "";
+      position: absolute;
+      right: -18%;
+      bottom: -30%;
+      width: 20rem;
+      height: 20rem;
+      border: 1px solid rgba(255, 204, 102, 0.2);
+      transform: rotate(18deg);
+    }
+
+    .card-badge {
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+      display: inline-flex;
+      min-height: 2.35rem;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255, 204, 102, 0.3);
+      border-radius: 999px;
+      padding: 0.55rem 0.75rem;
+      background: rgba(255, 204, 102, 0.08);
+      color: #ffe3a4;
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .game-icon {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      width: 3rem;
+      height: 3rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(56, 232, 255, 0.32);
+      border-radius: var(--radius);
+      background: rgba(56, 232, 255, 0.09);
+      color: var(--cyan);
+      font-size: 1.2rem;
+      box-shadow: 0 0 30px rgba(56, 232, 255, 0.12);
+      transition: transform 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .featured-card .game-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin-top: 1.2rem;
+      border-color: rgba(255, 204, 102, 0.4);
+      background: rgba(255, 204, 102, 0.1);
+      color: var(--amber);
+      font-size: 1.45rem;
+    }
+
+    .game-card:hover .game-icon,
+    .game-card:focus-visible .game-icon {
+      transform: translateY(-2px) scale(1.04);
+      border-color: rgba(56, 232, 255, 0.55);
+    }
+
+    .game-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: auto 0 0.72rem;
+      font-size: 1.55rem;
+      line-height: 1.05;
+    }
+
+    .featured-card h3 {
+      max-width: 31rem;
+      margin-top: 4.2rem;
+      font-size: 2.05rem;
+    }
+
+    .game-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .play-btn {
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+      min-height: 2.8rem;
+      margin-top: 1.15rem;
+      padding: 0.7rem 0.92rem;
+      font-size: 0.92rem;
+    }
+
+    .snake-card .game-icon {
+      color: var(--mint);
+    }
+
+    .tic-card .game-icon {
+      color: var(--amber);
+    }
+
+    .gravity-card .game-icon {
+      color: var(--cyan);
+    }
+
+    .stack-card .game-icon {
+      color: var(--pink);
+    }
+
+    .closing-band {
+      display: flex;
+      width: min(1180px, calc(100% - 2rem));
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 1rem auto 0;
+      border-top: 1px solid rgba(154, 219, 255, 0.12);
+      border-bottom: 1px solid rgba(154, 219, 255, 0.12);
+      padding: 2rem 0;
+    }
+
+    .closing-band h2 {
+      max-width: 38rem;
+      margin: 0;
+      font-size: 2.25rem;
+      line-height: 1.05;
+    }
+
+    .closing-band p {
+      max-width: 34rem;
+      margin: 0.8rem 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .site-footer {
+      display: flex;
+      width: min(1180px, calc(100% - 2rem));
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 auto;
+      padding: 2rem 0 2.5rem;
+      color: var(--muted);
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      min-height: 2.35rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.55rem 0.8rem;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, color 180ms ease, background 180ms ease;
+    }
+
+    .footer-links a:hover {
+      border-color: rgba(56, 232, 255, 0.55);
+      background: rgba(56, 232, 255, 0.08);
+      color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes backgroundShift {
+      from {
+        filter: hue-rotate(0deg) brightness(1);
+      }
+
+      to {
+        filter: hue-rotate(18deg) brightness(1.08);
+      }
+    }
+
+    @keyframes pieceFloat {
+      0%,
+      100% {
+        transform: translateZ(48px) translateY(0);
+      }
+
+      50% {
+        transform: translateZ(48px) translateY(-0.45rem);
+      }
+    }
+
+    @media (max-width: 980px) {
+      h1 {
+        font-size: 4.25rem;
+      }
+
+      .section-heading h2 {
+        font-size: 3rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-top: 6.4rem;
+      }
+
+      .hero-visual {
+        min-height: 21rem;
+      }
+
+      .playfield {
+        width: min(82vw, 22rem);
+      }
+
+      .games-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .featured-card {
+        min-height: 20rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-header {
+        padding-block: 0.65rem;
+        border-bottom: 1px solid rgba(154, 219, 255, 0.16);
+        background: rgba(4, 12, 22, 0.78);
+        backdrop-filter: blur(18px);
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 4.95rem;
+        left: 1rem;
+        right: 1rem;
+        display: grid;
+        min-width: 0;
+        border-radius: var(--radius);
+        padding: 0.65rem;
+        background:
+          linear-gradient(145deg, rgba(16, 35, 61, 0.94), rgba(8, 18, 32, 0.9)),
+          rgba(9, 22, 38, 0.88);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-0.5rem);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .nav-menu.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-menu a {
+        min-height: 3.2rem;
+        border: 1px solid rgba(154, 219, 255, 0.12);
+        border-radius: var(--radius);
+        padding: 0.8rem 0.9rem;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .hero-grid {
+        min-height: auto;
+        padding-bottom: 2.5rem;
+      }
+
+      h1 {
+        max-width: 11ch;
+        font-size: 3.35rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.38rem;
+      }
+
+      .hero-text {
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .btn {
+        flex: 1 1 calc(50% - 0.45rem);
+        min-width: 0;
+        padding-inline: 0.85rem;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-card {
+        grid-column: auto;
+      }
+
+      .game-card,
+      .featured-card {
+        min-height: 16.8rem;
+      }
+
+      .featured-card h3 {
+        max-width: none;
+        margin-top: 3.4rem;
+        font-size: 1.7rem;
+      }
+
+      .closing-band {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .site-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .site-header {
+        padding-inline: 0.85rem;
+      }
+
+      .brand-name {
+        font-size: 0.82rem;
+      }
+
+      .brand-orbit {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .hero-grid,
+      .section {
+        padding-inline: 0.9rem;
+      }
+
+      .hero-grid {
+        padding-top: 5.8rem;
+      }
+
+      h1 {
+        font-size: 2.95rem;
+      }
+
+      .btn {
+        flex-basis: 100%;
+      }
+
+      .hero-visual {
+        min-height: 18rem;
+      }
+
+      .playfield-piece {
+        width: 3.25rem;
+        height: 3.25rem;
+      }
+
+      .hero-note {
+        right: 0.35rem;
+        bottom: 1rem;
+        max-width: calc(100% - 0.7rem);
+        font-size: 0.86rem;
+      }
+
+      .section {
+        padding-block: 3.6rem;
+      }
+
+      .section-heading h2 {
+        font-size: 2.35rem;
+      }
+
+      .game-card {
+        min-height: 15.8rem;
+        padding: 1.05rem;
+      }
+
+      .game-card h3 {
+        font-size: 1.38rem;
+      }
+
+      .featured-card h3 {
+        font-size: 1.48rem;
+      }
+
+      .closing-band h2 {
+        font-size: 1.85rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#games">Skip to games</a>
 
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand-mark" href="https://halfanhossenhabib.github.io/mysite/" aria-label="Halfan Hossen Habib home">
+        <span class="brand-orbit" aria-hidden="true"></span>
+        <span class="brand-name">Halfan Hossen Habib</span>
+      </a>
 
-    <header>
-        <a href="https://halfanhossenhabib.github.io/mysite" class="back-btn">
-            <i class="fas fa-arrow-left"></i> <span>Home</span>
-        </a>
-        <div>
-            <h1>Games Hub</h1>
-            <p class="subtitle">Simple games built with HTML, CSS & JS</p>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="https://halfanhossenhabib.github.io/mysite/">Home</a>
+        <a class="is-active" href="#games" aria-current="page">Games</a>
+        <a href="https://halfanhossenhabib.github.io/mysite/#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero-section" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Games Hub</p>
+          <h1>Games Hub</h1>
+          <p class="hero-subtitle">Playful web games and creative experiments</p>
+          <p class="hero-text">
+            Welcome to my playful corner for web games, small experiments, and arcade-style ideas built with HTML, CSS, and JavaScript.
+          </p>
+
+          <div class="hero-actions" aria-label="Games Hub actions">
+            <a class="btn btn-primary" href="#games">
+              <i class="fa-solid fa-gamepad" aria-hidden="true"></i>
+              <span>Explore Games</span>
+            </a>
+            <a class="btn btn-ghost" href="https://halfanhossenhabib.github.io/mysite/">
+              <i class="fa-solid fa-house" aria-hidden="true"></i>
+              <span>Home</span>
+            </a>
+          </div>
         </div>
-    </header>
 
-    <div class="games-container">
-        
-        <a href="https://halfanhossenhabib.github.io/snakegame/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
-            <i class="fas fa-worm game-icon snake-icon"></i>
-            <span class="game-title">Snake Game</span>
-            <span class="play-btn">Play Now</span>
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="playfield">
+            <span class="playfield-piece piece-chess"><i class="fa-solid fa-chess-knight"></i></span>
+            <span class="playfield-piece piece-snake"><i class="fa-solid fa-worm"></i></span>
+            <span class="playfield-piece piece-grid"><i class="fa-solid fa-border-all"></i></span>
+          </div>
+          <div class="hero-note">
+            <i class="fa-solid fa-bolt"></i>
+            <span>5 games queued</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section games-section" id="games">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Playground</p>
+        <h2>Experiments worth playing.</h2>
+        <p>Pick a game, jump in fast, and come back anytime for the next small creative build.</p>
+      </div>
+
+      <div class="games-grid">
+        <a href="https://halfanhossenhabib.github.io/chess/" class="game-card featured-card tilt-card reveal">
+          <span class="card-badge"><i class="fa-solid fa-star" aria-hidden="true"></i> Featured first</span>
+          <span class="game-icon"><i class="fa-solid fa-chess-knight" aria-hidden="true"></i></span>
+          <h3>Chess Mastery (Powered by Lovable AI)</h3>
+          <p>Think ahead, protect your pieces, and make every move count in the highlighted strategy pick.</p>
+          <span class="play-btn">Play Now <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
         </a>
 
-        <a href="https://halfanhossenhabib.github.io/tic-tac-toe/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
-            <i class="fas fa-border-all game-icon tic-icon"></i>
-            <span class="game-title">Tic Tac Toe</span>
-            <span class="play-btn">Play Now</span>
+        <a href="https://halfanhossenhabib.github.io/snakegame/" class="game-card snake-card tilt-card reveal">
+          <span class="game-icon"><i class="fa-solid fa-worm" aria-hidden="true"></i></span>
+          <h3>Snake Game</h3>
+          <p>Guide the classic growing snake, collect points, and stay sharp as the board gets tighter.</p>
+          <span class="play-btn">Play Now <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
         </a>
 
-        <a href="https://halfanhossenhabib.github.io/neongravity/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
-            <i class="fas fa-bolt game-icon neon-icon"></i>
-            <span class="game-title">Neon Gravity</span>
-            <span class="play-btn">Play Now</span>
+        <a href="https://halfanhossenhabib.github.io/tic-tac-toe/" class="game-card tic-card tilt-card reveal">
+          <span class="game-icon"><i class="fa-solid fa-border-all" aria-hidden="true"></i></span>
+          <h3>Tic Tac Toe</h3>
+          <p>A quick strategy duel with clean moves, instant rounds, and familiar grid logic.</p>
+          <span class="play-btn">Play Now <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
         </a>
 
-        <a href="https://halfanhossenhabib.github.io/neonstack/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
-            <i class="fas fa-layer-group game-icon stack-icon"></i>
-            <span class="game-title">Neon Stack</span>
-            <span class="play-btn">Play Now</span>
+        <a href="https://halfanhossenhabib.github.io/neongravity/" class="game-card gravity-card tilt-card reveal">
+          <span class="game-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+          <h3>Neon Gravity</h3>
+          <p>Dodge, jump, and ride a glowing gravity challenge with playful arcade energy.</p>
+          <span class="play-btn">Play Now <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
         </a>
 
-        <a href="https://halfanhossenhabib.github.io/chess/" class="game-card" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
-            <i class="fas fa-chess-knight game-icon chess-icon"></i>
-            <span class="game-title">Chess Mastery</span>
-            <span class="note">(Powered by Lovable AI)</span>
-            <span class="play-btn">Play Now</span>
+        <a href="https://halfanhossenhabib.github.io/neonstack/" class="game-card stack-card tilt-card reveal">
+          <span class="game-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
+          <h3>Neon Stack</h3>
+          <p>Stack glowing blocks with timing, precision, and a little bit of neon confidence.</p>
+          <span class="play-btn">Play Now <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
         </a>
+      </div>
+    </section>
 
+    <section class="closing-band reveal" aria-label="Portfolio connection">
+      <div>
+        <p class="eyebrow">Creative Web</p>
+        <h2>A playful extension of the main portfolio.</h2>
+        <p>Same builder energy, same modern tech atmosphere, with a little extra game-night glow.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://halfanhossenhabib.github.io/mysite/">
+        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+        <span>Back Home</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Halfan Hossen Habib</p>
+    <div class="footer-links" aria-label="Footer links">
+      <a href="https://halfanhossenhabib.github.io/mysite/">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span>Home</span>
+      </a>
+      <a href="https://halfanhossenhabib.github.io/mysite/#projects">
+        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+        <span>Projects</span>
+      </a>
     </div>
+  </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-    <script>
-        VanillaTilt.init(document.querySelectorAll(".game-card"), {
-            max: 25,
-            speed: 400,
-            scale: 1.05
+  <script>
+    const header = document.querySelector("#siteHeader");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector("#navMenu");
+    const navLinks = [...document.querySelectorAll(".nav-menu a")];
+    const revealItems = [...document.querySelectorAll(".reveal")];
+    const tiltCards = [...document.querySelectorAll(".tilt-card")];
+    const particleCanvas = document.querySelector("#particleCanvas");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setHeaderState() {
+      header.classList.toggle("is-scrolled", window.scrollY > 20);
+    }
+
+    function closeMenu() {
+      menuToggle.classList.remove("is-open");
+      navMenu.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function setupNavigation() {
+      setHeaderState();
+      window.addEventListener("scroll", setHeaderState, { passive: true });
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.classList.toggle("is-open");
+        navMenu.classList.toggle("is-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+    }
+
+    function setupReveal() {
+      if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         });
-    </script>
+      }, { threshold: 0.16 });
 
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    function setupTiltCards() {
+      if (prefersReducedMotion) return;
+
+      const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+      tiltCards.forEach((card) => {
+        if (hasFinePointer) {
+          card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `perspective(900px) rotateX(${y * -8}deg) rotateY(${x * 10}deg) translateY(-4px)`;
+          });
+        }
+
+        card.addEventListener("pointerdown", () => {
+          card.classList.add("is-touched");
+        });
+
+        card.addEventListener("pointerup", () => {
+          window.setTimeout(() => card.classList.remove("is-touched"), 140);
+        });
+
+        card.addEventListener("pointercancel", () => {
+          card.classList.remove("is-touched");
+        });
+
+        card.addEventListener("pointerleave", () => {
+          card.style.transform = "";
+          card.classList.remove("is-touched");
+        });
+      });
+    }
+
+    function setupParticles() {
+      const context = particleCanvas.getContext("2d");
+      let width = 0;
+      let height = 0;
+      let particles = [];
+
+      function resize() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        particleCanvas.width = Math.floor(width * ratio);
+        particleCanvas.height = Math.floor(height * ratio);
+        particleCanvas.style.width = `${width}px`;
+        particleCanvas.style.height = `${height}px`;
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        const count = Math.min(88, Math.max(36, Math.floor(width / 19)));
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.26,
+          vy: (Math.random() - 0.5) * 0.26,
+          size: 0.8 + Math.random() * 1.7
+        }));
+      }
+
+      function draw() {
+        context.clearRect(0, 0, width, height);
+
+        particles.forEach((particle, index) => {
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+          if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+
+          context.beginPath();
+          context.rect(particle.x, particle.y, particle.size, particle.size);
+          context.fillStyle = index % 4 === 0 ? "rgba(255, 79, 216, 0.58)" : "rgba(56, 232, 255, 0.68)";
+          context.fill();
+
+          for (let otherIndex = index + 1; otherIndex < particles.length; otherIndex += 1) {
+            const other = particles[otherIndex];
+            const distance = Math.hypot(particle.x - other.x, particle.y - other.y);
+            if (distance > 112) continue;
+            context.strokeStyle = `rgba(120, 205, 255, ${0.12 * (1 - distance / 112)})`;
+            context.lineWidth = 1;
+            context.beginPath();
+            context.moveTo(particle.x, particle.y);
+            context.lineTo(other.x, other.y);
+            context.stroke();
+          }
+        });
+
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      if (!prefersReducedMotion) {
+        draw();
+      } else {
+        context.fillStyle = "rgba(56, 232, 255, 0.24)";
+        particles.forEach((particle) => {
+          context.fillRect(particle.x, particle.y, 2, 2);
+        });
+      }
+    }
+
+    setupNavigation();
+    setupReveal();
+    setupTiltCards();
+    setupParticles();
+  </script>
 </body>
 </html>
